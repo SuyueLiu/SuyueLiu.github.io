@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="等风来的企鹅">
 <meta property="og:description" content="1. 创建和使用类一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。 2. Python对象实例化python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的">
 <meta property="article:published_time" content="2020-04-07T23:10:26.000Z">
-<meta property="article:modified_time" content="2020-04-07T23:58:11.829Z">
+<meta property="article:modified_time" content="2020-04-08T09:02:48.657Z">
 <meta property="article:author" content="Suyue Liu">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -226,7 +226,7 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h2 id="1-创建和使用类"><a href="#1-创建和使用类" class="headerlink" title="1. 创建和使用类"></a>1. 创建和使用类</h2><p>一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。</p>
-<h2 id="2-Python对象实例化"><a href="#2-Python对象实例化" class="headerlink" title="2. Python对象实例化"></a>2. Python对象实例化</h2><p>python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的类的副本，例如Dog()中的一只具体的小狗，例如Tom，3岁，表示有一只3岁的小狗叫Tom。<br>可以把类比做一个表格，这个表格设定了所有要记录的东西，美记录一个/组数据就是一个实例。</p>
+<h2 id="2-Python对象实例化"><a href="#2-Python对象实例化" class="headerlink" title="2. Python对象实例化"></a>2. Python对象实例化</h2><p>python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的类的副本，例如Dog()中的一只具体的小狗，例如Tom，3岁，表示有一只3岁的小狗叫Tom。<br>可以把类比做一个表格，这个表格设定了所有要记录的东西，每记录一个/组数据就是一个实例。<a id="more"></a></p>
 <h2 id="3-Python中定义类"><a href="#3-Python中定义类" class="headerlink" title="3. Python中定义类"></a>3. Python中定义类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">()</span>:</span></span><br><span class="line">    species = ‘mammal’</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sit</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name.title() + <span class="string">'is now sitting'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">roll_over</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name.title() + <span class="string">'rolled over'</span>)</span><br></pre></td></tr></table></figure>
 <p>在python3中用class关键字 + 类名称 来定义类。在python2中还需要指定类中继承的父类，python3中改为隐式默认值了。<br>类中的函数称为方法，如<strong>init</strong>, sit(), roll_over()都是方法。但是这里的<strong>init</strong>属于一个特殊的方法，每当你根据Dog类来创建一个实例时，程序都会自动运行这个方法给每个对象赋于name和age两个属性。 </p>
 <p>在这里<strong>init</strong>(self, name, age)方法具有三个形参，self、name、age。其中形参self是必不可少的，且必须位于其余的形参之前。在创建Dog类的实例时，将自动传入实参slef。每个与类相关联的方法的调用都会自动传入实参self，他是一个指向实例本身的引用，每个实例都能够访问类的属性和方法。对于<strong>init</strong>方法中的形参name和age，在创建实例的时候必须传入相应的值。<br>注意这里self.name和self.age 定义的是name和age两个变量，和形参name和age不同。用self为前缀的变量都可被类中所有的方法使用。我们还可以通过类的所有实例来访问这些变量</p>
@@ -488,11 +488,11 @@ my_car.read_odometer()</code></pre><p>最简单的一种方法，通过实例访
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color4">碎碎念</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">碎碎念</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
