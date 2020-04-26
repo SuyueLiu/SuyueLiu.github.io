@@ -6,21 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://suyueliu.github.io">
-  <title>Python中类的创建和使用？ | 等风来的企鹅</title>
+  <title>数据结构：数组，链表，跳表 | 等风来的企鹅</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1. 创建和使用类一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。 2. Python对象实例化python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的">
+  <meta name="description" content="1. 数组 Array数组其实是一个相对来说比较简单的数据结构，数组中元素的存储有先后顺序，定义一个数组之后，会在内存中开辟一个连续的内存空间，通过内存管理器访问任意的位置其事件复杂度都为O(1)。对于Python本身而言，并没有内置的数组结构，可以是使用numpy这样的库，对于一维数组而言，通常用列表 (list)来代替。在数组中存放的数据必须是相同类型的，但是列表中则没有要求。 在对数组或者列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python中类的创建和使用？">
-<meta property="og:url" content="http://suyueliu.github.io/2020/04/08/Python%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%EF%BC%9F/index.html">
+<meta property="og:title" content="数据结构：数组，链表，跳表">
+<meta property="og:url" content="http://suyueliu.github.io/2020/04/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%95%B0%E7%BB%84%EF%BC%8C%E9%93%BE%E8%A1%A8%EF%BC%8C%E8%B7%B3%E8%A1%A8/index.html">
 <meta property="og:site_name" content="等风来的企鹅">
-<meta property="og:description" content="1. 创建和使用类一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。 2. Python对象实例化python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的">
-<meta property="article:published_time" content="2020-04-07T23:10:26.000Z">
-<meta property="article:modified_time" content="2020-04-11T21:45:10.455Z">
+<meta property="og:description" content="1. 数组 Array数组其实是一个相对来说比较简单的数据结构，数组中元素的存储有先后顺序，定义一个数组之后，会在内存中开辟一个连续的内存空间，通过内存管理器访问任意的位置其事件复杂度都为O(1)。对于Python本身而言，并没有内置的数组结构，可以是使用numpy这样的库，对于一维数组而言，通常用列表 (list)来代替。在数组中存放的数据必须是相同类型的，但是列表中则没有要求。 在对数组或者列">
+<meta property="og:image" content="http://q9d67m3aq.bkt.clouddn.com/singly_linked_list.png">
+<meta property="og:image" content="http://q9d67m3aq.bkt.clouddn.com/doubly_linked_list.png">
+<meta property="og:image" content="http://q9d67m3aq.bkt.clouddn.com/Circular%20Linked%20List.png">
+<meta property="og:image" content="http://q9d67m3aq.bkt.clouddn.com/skip_list.png">
+<meta property="article:published_time" content="2020-04-26T14:57:20.000Z">
+<meta property="article:modified_time" content="2020-04-26T15:09:03.058Z">
 <meta property="article:author" content="Suyue Liu">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q9d67m3aq.bkt.clouddn.com/singly_linked_list.png">
   
     <link rel="alternative" href="/atom.xml" title="等风来的企鹅" type="application/atom+xml">
   
@@ -178,14 +183,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python的面向对象是怎么回事？" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数据结构：数组，链表，跳表" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Python中类的创建和使用？
+      数据结构：数组，链表，跳表
     </h1>
   
 
@@ -197,8 +202,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/04/08/Python%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%EF%BC%9F/" class="archive-article-date">
-        <time datetime="2020-04-07T23:10:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
+<a href="/2020/04/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%95%B0%E7%BB%84%EF%BC%8C%E9%93%BE%E8%A1%A8%EF%BC%8C%E8%B7%B3%E8%A1%A8/" class="archive-article-date">
+        <time datetime="2020-04-26T14:57:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-26</time>
 </a>
 
   
@@ -211,7 +216,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.3k字</span>
+      <span class="post-count">1k字</span>
     </span>
   </span>
 
@@ -220,7 +225,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">5分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -231,32 +236,72 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="1-创建和使用类"><a href="#1-创建和使用类" class="headerlink" title="1. 创建和使用类"></a>1. 创建和使用类</h2><p>一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。</p>
-<h2 id="2-Python对象实例化"><a href="#2-Python对象实例化" class="headerlink" title="2. Python对象实例化"></a>2. Python对象实例化</h2><p>python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的类的副本，例如Dog()中的一只具体的小狗，例如Tom，3岁，表示有一只3岁的小狗叫Tom。<br>可以把类比做一个表格，这个表格设定了所有要记录的东西，每记录一个/组数据就是一个实例。<a id="more"></a></p>
-<h2 id="3-Python中定义类"><a href="#3-Python中定义类" class="headerlink" title="3. Python中定义类"></a>3. Python中定义类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">()</span>:</span></span><br><span class="line">    species = ‘mammal’</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sit</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name.title() + <span class="string">'is now sitting'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">roll_over</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name.title() + <span class="string">'rolled over'</span>)</span><br></pre></td></tr></table></figure>
-<p>在python3中用class关键字 + 类名称 来定义类。在python2中还需要指定类中继承的父类，python3中改为隐式默认值了。<br>类中的函数称为方法，如<strong>init</strong>, sit(), roll_over()都是方法。但是这里的<strong>init</strong>属于一个特殊的方法，每当你根据Dog类来创建一个实例时，程序都会自动运行这个方法给每个对象赋于name和age两个属性。 </p>
-<p>在这里<strong>init</strong>(self, name, age)方法具有三个形参，self、name、age。其中形参self是必不可少的，且必须位于其余的形参之前。在创建Dog类的实例时，将自动传入实参slef。每个与类相关联的方法的调用都会自动传入实参self，他是一个指向实例本身的引用，每个实例都能够访问类的属性和方法。对于<strong>init</strong>方法中的形参name和age，在创建实例的时候必须传入相应的值。<br>注意这里self.name和self.age 定义的是name和age两个变量，和形参name和age不同。用self为前缀的变量都可被类中所有的方法使用。我们还可以通过类的所有实例来访问这些变量</p>
-<p>类属性有别于实例属性。实例属性是每个特定实例所特有的属性、特征，如每一条狗的名字和年纪。类属性是所有属于这个类的实例所具有的属性，如这里的species = ‘mammal’，所有的小狗都属于mammal。</p>
-<h2 id="4-创建类的实例"><a href="#4-创建类的实例" class="headerlink" title="4. 创建类的实例"></a>4. 创建类的实例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_dog = Dog(<span class="string">'wills'</span>, <span class="number">6</span>)</span><br><span class="line">your_dog = Dog(<span class="string">'Tom'</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>这两条代码分别创建了一条名为“wills”年龄6岁的小狗和名为“Tom”年龄为3岁的小狗，并把这两个实例分别存储到变量my_dog和your_dog里面，通过“句点法”我们便可访问实例的属性和调用类的方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">my_dog = Dog(<span class="string">'wills'</span>, <span class="number">6</span>)</span><br><span class="line">my_dog.sit()</span><br><span class="line">print(my_dog.name + <span class="string">' is my dog, '</span> + <span class="string">'he is '</span> + str(my_dog.age) + <span class="string">' years old.'</span>)</span><br><span class="line"></span><br><span class="line">your_dog = Dog(<span class="string">'Tom'</span>, <span class="number">3</span>)</span><br><span class="line">your_dog.roll_over()</span><br><span class="line">print(<span class="string">'Your dog is '</span> + your_dog.name + <span class="string">', he is '</span> + str(your_dog.age) + <span class="string">' years old.'</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-使用类和属性"><a href="#5-使用类和属性" class="headerlink" title="5. 使用类和属性"></a>5. 使用类和属性</h2><h3 id="5-1-给定属性的初始值-默认值"><a href="#5-1-给定属性的初始值-默认值" class="headerlink" title="5.1 给定属性的初始值/默认值"></a>5.1 给定属性的初始值/默认值</h3><p>有时候我们需要给类里面的某个熟悉设定一个初始值或者默认值，可直接在<strong>init</strong>方法中指定相应的值，如果用这种方法的话，可无须在<strong>init</strong>中指定相应的形参。<br>我们重新定义一个Car()类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, make, model, year)</span>:</span></span><br><span class="line">        self.make = make</span><br><span class="line">        self.model = model</span><br><span class="line">        self.year = year</span><br><span class="line">        self.odometer_reading = <span class="number">0</span> <span class="comment">#如果在__init__内指定属性的初始值，无需包含为他提供初始值的形参</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_descriptive</span><span class="params">(self)</span>:</span></span><br><span class="line">        long_name = str(self.year) + <span class="string">'  '</span> + self.make + <span class="string">'  '</span> + self.model</span><br><span class="line">        <span class="keyword">return</span> long_name.title()</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">read_odometer</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'This car has '</span> + str(self.odometer_reading) + <span class="string">' miles on it.'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这里定义的Car()类除了self之外还包含三个形参：make, model, year, 我们想要设定汽车里程记初始值为0，但我们并未指定相应的形参。<br>下面创建一个实例，并调用方法get_descriptive()和read_odometer()</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_car = Car(<span class="string">'audi'</span>, <span class="string">'a4'</span>, <span class="number">2016</span>)</span><br><span class="line">print(my_car.get_descriptive())</span><br><span class="line">my_car.read_odometer()</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-2-修改属性的值"><a href="#5-2-修改属性的值" class="headerlink" title="5.2 修改属性的值"></a>5.2 修改属性的值</h3><p>有时候我们需要修改某个熟悉的值，这里提供三种方法：</p>
-<h4 id="5-2-1-直接修改"><a href="#5-2-1-直接修改" class="headerlink" title="5.2.1 直接修改"></a>5.2.1 直接修改</h4><pre><code>my_car.odometer_reading = 23
-my_car.read_odometer()</code></pre><p>最简单的一种方法，通过实例访问属性并修改。但是这种方法无法对赋值的过程进行限定，比如没办法限制回调里程记。</p>
-<h4 id="5-2-2-创建一个方法来更新属性的值"><a href="#5-2-2-创建一个方法来更新属性的值" class="headerlink" title="5.2.2 创建一个方法来更新属性的值"></a>5.2.2 创建一个方法来更新属性的值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_odometer</span><span class="params">(self, mileage)</span>:</span></span><br><span class="line">    <span class="string">'''禁止他人将里程表的值回调'''</span></span><br><span class="line">    <span class="keyword">if</span> mileage &gt;= self.odometer_reading:</span><br><span class="line">        self.odometer_reading = mileage</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'You cannot roll back an odometer'</span>)</span><br><span class="line"></span><br><span class="line">my_car.update_odometer(<span class="number">560</span>)</span><br><span class="line">my_car.read_odometer()</span><br></pre></td></tr></table></figure>
-<p>在类里面定义一个新的方法update_odometer()，并设定一个形参mileage来接收新的实参，并且用if判断禁止回调里程记。</p>
-<h4 id="5-2-3-定义一个新的方法对属性的值进行递增"><a href="#5-2-3-定义一个新的方法对属性的值进行递增" class="headerlink" title="5.2.3 定义一个新的方法对属性的值进行递增"></a>5.2.3 定义一个新的方法对属性的值进行递增</h4><p>这个方法其实和第二个类似，只是修改了更新的规则，可每次增加传入的miles的值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increase_odometer</span><span class="params">(self, miles)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> miles &gt;= <span class="number">0</span>:</span><br><span class="line">        self.odometer_reading += miles</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'You cannot roll back an odometer.'</span>)</span><br></pre></td></tr></table></figure>
+    <h3 id="1-数组-Array"><a href="#1-数组-Array" class="headerlink" title="1. 数组 Array"></a>1. 数组 Array</h3><p>数组其实是一个相对来说比较简单的数据结构，数组中元素的存储有先后顺序，定义一个数组之后，会在内存中开辟一个连续的内存空间，通过内存管理器访问任意的位置其事件复杂度都为O(1)。对于Python本身而言，并没有内置的数组结构，可以是使用numpy这样的库，对于一维数组而言，通常用列表 (list)来代替。在数组中存放的数据必须是相同类型的，但是列表中则没有要求。</p>
+<p>在对数组或者列表进行操作时，元素的插入和删除在内存中都会涉及到大量复制操作，时间复杂度较大，通常为O(n)。<a id="more"></a></p>
+<h3 id="2-链表-Linked-List"><a href="#2-链表-Linked-List" class="headerlink" title="2. 链表 Linked List"></a>2. 链表 Linked List</h3><p>链表是一种线性表，但并不要求按照线性顺序存储数据。链表中的元素被称为结点(Node)，每个结点包含两个元素：结点的值(value)和指向下一个元素的指针(Next)。头结点称为head，尾结点称为tail。</p>
+<ol>
+<li><p>单向链表 Singly Linked List</p>
+<p>每个结点的next指针都只指向下一个结点，尾结点的指针指向null。</p>
+<p><img src="http://q9d67m3aq.bkt.clouddn.com/singly_linked_list.png" alt="singly_linked_list"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#definition for a singly linked list</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">    self.val = x</span><br><span class="line">    self.next = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
 
 
+</li>
+</ol>
+<ol start="2">
+<li><p>双向链表 Doubly Linked List</p>
+<p>双向链表中的Node除了有next指针以外，还有一个指向前结点的previous指针。head的prev指针指向Null或者空列表，tail的next指针指向Null或者空列表。</p>
+<p><img src="http://q9d67m3aq.bkt.clouddn.com/doubly_linked_list.png" alt="doubly_linked_list"></p>
+</li>
+<li><p>循环链表 Circular Linked List</p>
+<p>在循环链表中，tail的next指针指向head，这种方式在单链表和双向链表中都可以实现。也可把循环链表看作“无头无尾”的链表，这种模式有利于节约数据缓存。</p>
+<p><img src="http://q9d67m3aq.bkt.clouddn.com/Circular%20Linked%20List.png" alt="Circular Linked List"></p>
+</li>
+</ol>
+<p>在链表中插入新结点是，只需要将前结点的指针指向新元素，新元素的指针指向原来的下一个结点即可，总共需要操作两次，但都是常数级别的时间复杂度。删除操作即为增加操作的逆过程，也是常数时间复杂度。但是无果要访问链表中任意的元素，一般需要从头开始访问，平均而言时间复杂度为O(n)。</p>
+<h3 id="3-跳表-Skip-List"><a href="#3-跳表-Skip-List" class="headerlink" title="3. 跳表 Skip List"></a>3. 跳表 Skip List</h3><p>为了解决链表的查询时间复杂度较高的问题，跳表应运而生。 <font color='red'> 跳表中的元素必须是有序的 </font>。跳表的插入，删除和搜索都是O(logn)。</p>
+<p>对于一个一维的数据结构来说，要想减小对其操作的时间复杂度，一般来说有两个方法：<font color='red'>升维和空间换时间 </font>。当数据从一维升到二维的时候，多了一个维度，就多了一级信息，操作的时候自然也就快一点了。空间换时间的话就是牺牲内存来节省操作时间。</p>
+<p><img src="http://q9d67m3aq.bkt.clouddn.com/skip_list.png" alt="skip_list"></p>
+<p>假设第一级索引在原始链表的基础上以步长2进行搜索，第二级也是如此。假设我们要查询value=8的元素，从最高级索引出发，知道元素链表为止。</p>
+<p>时间复杂度分析：假设原始链表有n个结点，每一级索引都按照2的步长搜索，则第k级索引的结点数为$\frac{n}{2^k}$ , 假设一共有h级索引，最高级只有2个结点，则可计算出跳表的深度为$log_{2}(n)$，即跳表查询的时间复杂度为O(logn)。由于跳表是多维的结构，所以其增加和删除的时间复杂度都为O(logn)。</p>
+<p>空间复杂度分析：无论是以多少为步长进行抽取，最终每一级索引的元素数量之和都是收敛到n的，所以空间复杂度为O(n)。</p>
+<h3 id="4-时间复杂度比较"><a href="#4-时间复杂度比较" class="headerlink" title="4. 时间复杂度比较"></a>4. 时间复杂度比较</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">prepend</th>
+<th align="center">append</th>
+<th align="center">lookup</th>
+<th align="center">insert</th>
+<th align="center">delete</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">List</td>
+<td align="center">O(1)</td>
+<td align="center">O(1)</td>
+<td align="center">O(1)</td>
+<td align="center">O(n)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">Linked list</td>
+<td align="center">O(1)</td>
+<td align="center">O(1)</td>
+<td align="center">O(n)</td>
+<td align="center">O(1)</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">Skip list</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">O(logn)</td>
+<td align="center">O(logn)</td>
+<td align="center">O(logn)</td>
+</tr>
+</tbody></table>
 
     
 
@@ -273,7 +318,7 @@ my_car.read_odometer()</code></pre><p>最简单的一种方法，通过实例访
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -285,7 +330,7 @@ my_car.read_odometer()</code></pre><p>最简单的一种方法，通过实例访
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
+        			<a href="/categories/Leetcode//" class="article-tag-list-link color4">Leetcode</a>
         		</li>
       		
 		</ul>
@@ -340,7 +385,7 @@ my_car.read_odometer()</code></pre><p>最简单的一种方法，通过实例访
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://suyueliu.github.io/2020/04/08/Python%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%EF%BC%9F/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://suyueliu.github.io/2020/04/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%95%B0%E7%BB%84%EF%BC%8C%E9%93%BE%E8%A1%A8%EF%BC%8C%E8%B7%B3%E8%A1%A8/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -355,18 +400,9 @@ my_car.read_odometer()</code></pre><p>最简单的一种方法，通过实例访
 
 <nav id="article-nav">
   
-    <a href="/2020/04/11/Python%E4%B8%AD%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python中类的继承
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/04/07/%E9%9A%8F%E7%AC%941/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">随笔1</div>
+    <a href="/2020/04/25/%E5%86%B3%E7%AD%96%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">决策树 Decision Tree</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -385,6 +421,19 @@ my_car.read_odometer()</code></pre><p>最简单的一种方法，通过实例访
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数组-Array"><span class="toc-number">1.</span> <span class="toc-text">1. 数组 Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-链表-Linked-List"><span class="toc-number">2.</span> <span class="toc-text">2. 链表 Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-跳表-Skip-List"><span class="toc-number">3.</span> <span class="toc-text">3. 跳表 Skip List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-时间复杂度比较"><span class="toc-number">4.</span> <span class="toc-text">4. 时间复杂度比较</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
