@@ -18,7 +18,7 @@
 <meta property="og:description" content="1. 介绍决策树（Decision Tree）是一种常见的机器学习算法，以分类树为例，我们希望从数据中学习到一个模型来对新的数据进行分类，这个过程其实和人类在做决策时的时候的处理机制相似，提取事物的特征(features),按照一定的优先级判断事物的种类。 一般来说，一颗决策树包含一个根结点，若干个内部节点和若干个叶子结点，叶子节点即为决策树的分类，其它每个结点则对应一个属性测试；根结点包含样">
 <meta property="og:image" content="http://q9d67m3aq.bkt.clouddn.com/entropy.png">
 <meta property="article:published_time" content="2020-04-25T22:29:59.000Z">
-<meta property="article:modified_time" content="2020-04-25T22:58:05.248Z">
+<meta property="article:modified_time" content="2020-05-24T14:51:32.166Z">
 <meta property="article:author" content="Suyue Liu">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -252,7 +252,8 @@
 <h4 id="2-4-基尼指数"><a href="#2-4-基尼指数" class="headerlink" title="2.4 基尼指数"></a>2.4 基尼指数</h4><p>基尼指数(Gini index) 也被称为基尼不纯度(Gini Inpurity), 其描述了从集合中随机选择元素被错误分类的概率，当Gini index越小的时候，说明该数据集的纯度越高。样本集D的纯度可用基尼指数来衡量：<br>$$<br>Gini(D) = 1 - \sum_{k=1}^{|y|}p_{k}^2<br>$$</p>
 <p>样本集D中属性a对应的Gini值可表示为：</p>
 <p>$$<br>Gini_{index}(D,a) = \sum_{v=1}^{V} \frac{|D^v|}{|D|}Gini(D)<br>$$</p>
-<p>于是，在选择特征的时候便可寻找使Gini_index最大的特征了。</p>
+<p>$$<br>Gain(D) = Gini(D) - Gini_{index}(D,a)<br>$$</p>
+<p>于是，我们选择能够使增益最大的特征，也即寻找使Gini_index最小的特征来优先划分。</p>
 <h3 id="3-树的生成"><a href="#3-树的生成" class="headerlink" title="3. 树的生成"></a>3. 树的生成</h3><h4 id="3-1-子集的划分"><a href="#3-1-子集的划分" class="headerlink" title="3.1 子集的划分"></a>3.1 子集的划分</h4><p>子集的划分其实就是在选定特征a之后，找出符合特征的取值$a^1,a^2,…,a^V$ 的样本集合，由于本次作业的要求，选择的两个特征都只有四个取值，所以在写程序的时候也比较“生硬”。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">split_dataset</span><span class="params">(self, dataset, feature_index)</span>:</span> </span><br><span class="line"><span class="string">'''define method to split subset for a feature'''</span></span><br><span class="line">     dataset = pd.DataFrame(dataset) <span class="comment"># if the type of dataset is not DataFrame, transfer it to DataFrame</span></span><br><span class="line">     subset1, subset2, subset3, subset4= [],  [],  [],  [] <span class="comment"># define 4 cluster to store the index of subset</span></span><br><span class="line">     instances = dataset.iloc[:, feature_index] <span class="comment"># get the examples of  each feature</span></span><br><span class="line">     </span><br><span class="line">     split_dict = &#123;&#125; <span class="comment"># define the dict to store feature value and its corresponding subset</span></span><br><span class="line">     features = list(dataset.columns)[<span class="number">0</span>:]</span><br><span class="line">     feature_value = sorted(list(set(dataset[features[feature_index]]))) <span class="comment"># return the feature values(symbols)</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span> index <span class="keyword">in</span> list(dataset.index):</span><br><span class="line">         <span class="keyword">if</span> instances[index] == feature_value[<span class="number">0</span>]: </span><br><span class="line">             subset1.append(index)</span><br><span class="line">         <span class="keyword">elif</span> instances[index] == feature_value[<span class="number">1</span>]:</span><br><span class="line">             subset2.append(index)</span><br><span class="line">         <span class="keyword">elif</span> instances[index] == feature_value[<span class="number">2</span>]:</span><br><span class="line">             subset3.append(index)</span><br><span class="line">         <span class="keyword">elif</span> instances[index] == feature_value[<span class="number">3</span>]:</span><br><span class="line">             subset4.append(index)</span><br><span class="line">     subset = [subset1, subset2, subset3, subset4]</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span> i <span class="keyword">in</span> range(len(feature_value)):</span><br><span class="line">         split_dict[feature_value[i]] = subset[i] <span class="comment"># key = feature value, value = subset belongs to each feature value</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> split_dict, subset <span class="comment"># return split subsets</span></span><br></pre></td></tr></table></figure>
 
@@ -558,11 +559,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
