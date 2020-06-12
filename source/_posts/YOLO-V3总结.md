@@ -21,7 +21,7 @@ toc: true
 
 这个Netron 的图看起来还是不够直观，这里借助 [木栈](https://blog.csdn.net/leviopku/article/details/82660381) 大佬的图片来帮助理解V3的网络结构。
 
-![YOLO V3](https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO V3.png)
+![YOLO V3](https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLOV3.png)
 
 * **DBL**： YOLO V3网络的基本组件，从图中可以看出，DBL由Convolutional layer, Batch Normalization 和 Leaky ReLu 层组成；
 * **res unit**：YOLO V3的新网络开始借鉴 ResNet的思想，在网络中加入残差结构。在一个res unit中有2个DBL 和一个shortcut；
