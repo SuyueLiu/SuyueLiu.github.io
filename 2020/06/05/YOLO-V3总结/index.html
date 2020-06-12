@@ -16,17 +16,16 @@
 <meta property="og:url" content="http://suyueliu.github.io/2020/06/05/YOLO-V3%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="等风来的企鹅">
 <meta property="og:description" content="由于论文本身写得比较随意，V3里面有很多细节其实作者在论文里都没有提及，在网上看过一些文章之后，把V3里面设计的一些细节都梳理一遍，方便接下来的coding。虽然现在YOLO V4已经出了，但是YOLO V3仍然值得好好研究。">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2qixupj30u00yltd4.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2r1r6jj312v0i4din.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2kh93pj30ow0y4gqh.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2rmp02j30pk0os0w8.jpg">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Netron.png">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Darknet-53.png">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO_V3_BB_pred.png">
 <meta property="article:published_time" content="2020-06-05T20:52:08.000Z">
-<meta property="article:modified_time" content="2020-06-11T22:08:53.046Z">
+<meta property="article:modified_time" content="2020-06-12T18:53:29.169Z">
 <meta property="article:author" content="Suyue Liu">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2qixupj30u00yltd4.jpg">
+<meta name="twitter:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Netron.png">
   
     <link rel="alternative" href="/atom.xml" title="等风来的企鹅" type="application/atom+xml">
   
@@ -236,9 +235,9 @@
 
 <p>由于论文本身写得比较随意，V3里面有很多细节其实作者在论文里都没有提及，在网上看过一些文章之后，把V3里面设计的一些细节都梳理一遍，方便接下来的coding。虽然现在YOLO V4已经出了，但是YOLO V3仍然值得好好研究。<a id="more"></a></p>
 <h2 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1. 网络结构"></a>1. 网络结构</h2><p>相比V1 和 V2，V3比较明显的一个改进就是backbone的结构变化，这里推荐一个开源的网络可视化工具：<strong><a href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener">Netron</a></strong>, 支持多种网络配置格式。想看YOLO的网络结构的话直接到DarkNet网站上下载相应的 <a href="https://github.com/AlexeyAB/darknet/tree/master/cfg" target="_blank" rel="noopener">cfg</a> 文件，导入即可。</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2qixupj30u00yltd4.jpg" alt="Netron"></p>
+<p><img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Netron.png" alt="Netron"></p>
 <p>这个Netron 的图看起来还是不够直观，这里借助 <a href="https://blog.csdn.net/leviopku/article/details/82660381" target="_blank" rel="noopener">木栈</a> 大佬的图片来帮助理解V3的网络结构。</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2r1r6jj312v0i4din.jpg" alt="YOLO V3"></p>
+<p>![YOLO V3](<a href="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO" target="_blank" rel="noopener">https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO</a> V3.png)</p>
 <ul>
 <li><p><strong>DBL</strong>： YOLO V3网络的基本组件，从图中可以看出，DBL由Convolutional layer, Batch Normalization 和 Leaky ReLu 层组成；</p>
 </li>
@@ -251,7 +250,7 @@
 <li><p><strong>concat</strong>：张量拼接，将浅层网络的某一层和和后面某一层的上采样进行拼接。张量拼接会扩充维度，例如$26 * 26 * 256$和$26 * 26 * 512$的两个张量拼接，结果是$26 * 26 * 768$。</p>
 </li>
 </ul>
-<h3 id="1-1-Backbone"><a href="#1-1-Backbone" class="headerlink" title="1.1 Backbone"></a>1.1 Backbone</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2kh93pj30ow0y4gqh.jpg" alt="Darknet-53"></p>
+<h3 id="1-1-Backbone"><a href="#1-1-Backbone" class="headerlink" title="1.1 Backbone"></a>1.1 Backbone</h3><p><img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Darknet-53.png" alt="Darknet-53"></p>
 <p>YOLO V3中的Backbone被命名为<code>Darknet-53</code>（如上图所示）。但是，在整个V3的网络中，没有池化(pooling)和全连接层，内部张量的尺度变化依靠卷积核的步长变化来实现，例如<code>stride=(2,2)</code>, 可以使图像的宽和高都缩小一半。虽然在<code>Darknet-53</code>的最后有一个全局的平均池化，但是在V3中实际没有用到这一步。在V3中，张量的尺度变化一共有5次，这就是为什么$608 * 608$的输入，输出为$19 * 19(608/2^5)$ 的原因。</p>
 <p>在<code>Darknet-53</code>中，大量使用残差结构，这样做有几个好处：</p>
 <ol>
@@ -267,7 +266,7 @@
 <p>作者在论文中也提到了为什么要把小尺度的特征图和和前序网络层次的输出进行拼接，这种方法使我们能够从上采样的特征图中获得更有意义的语义信息，并从早期的特征图中获得更细粒度的信息。</p>
 <h2 id="3-Bounding-box-prediction"><a href="#3-Bounding-box-prediction" class="headerlink" title="3. Bounding box prediction"></a>3. Bounding box prediction</h2><p>YOLO V3沿用了V2中用Kmeans聚类先验边界框(Bounding Box Prior)尺寸的方法，V3中选用K=9，在数据集上总共聚类9种尺寸的先验框，每种尺度的特征图设定3种尺寸。<code>(10 * 13),(16 * 30), (33 * 23), (30 * 61), (62 * 45), (59 * 119), (119 * 90), (156 * 198), (373 * 326)​</code>。</p>
 <p>对于最小的特征图$19 * 19$，应用最大的先验框<code>(119 * 90), (156 * 198), (373 * 326)</code>，因为其具有最大的感受野；对于中等大小的特征图$38 * 38$，应用中等大小的先验框 <code>(30 * 61), (62 * 45), (59 * 119)</code>；对于最大的特征图<code>76 * 76</code>的特征图，应用最小的先验框<code>(10 * 13),(16 * 30), (33 * 23)</code>。</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2rmp02j30pk0os0w8.jpg" alt="YOLO_V3_BB_pred"></p>
+<p><img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO_V3_BB_pred.png" alt="YOLO_V3_BB_pred"></p>
 <p>在YOLO V3中，每个尺度的特征图中的每个格子都会预测3个B-Box，包含边框的位置（x, y, w, h）、object confidence 和80个类别的概率，$N* N *[3 *(4+1+80)]$。例如，对于scale 1，输出结果为$19 * 19 * [3 * (4+1+80)]$。V3在对边框进行预测的时候，采用的是<strong>Logistic Regression</strong>，LR用于对先验框包围的部分进行一个目标性评分(objectness score)，即这块位置是目标的可能性有多大。如果一个先验边界框与真实对象的重叠量大于任何其他先验边界框，则该值为1；如果先验边界框不是最好的，但是与真实对象的重叠量超过某个阈值（V3用的0.5），这个先验框将会被忽略，不会进行预测。这一步是在预测开始之前进行的，V3只会对一个先验框进行操作，也就是最佳的先验框，这样可以去掉不必要的先验框，减少计算量。</p>
 <p>如上图所示，图中的虚线框为Kmeans得到的先验框，实线框是通过YOLO V3预测的偏移量计算出来的预测边界框。其中，$（C_{x},C_{y}）$ 是先验框在特征图上的中心坐标，$P_{w},P_{h}$是先验框的宽和高；$(t_{x}, t_{y})$ 是预测边界框中心相对于先验框的中心的偏移量， $t_{w}, t_{h}$ 是预测边界框的宽高缩放比；$(b_{x}, b_{y}, b_{w}, b_{h})$ 是最终预测的目标边界框的绝对位置和尺寸，$\sigma(x)$是Sigmoid函数（在图中用s(x)表示），其目的是将预测的中心偏移量约束到0和1之间，保证预测的边界框的中心坐标在一个cell当中。通过下面的公式便可计算得到预测边框的位置和尺度。<br>$$<br>b_{x} = \sigma(t_{x}) + C_{x}<br>$$</p>
 <p>$$<br>b_{y} = \sigma(t_{y}) + C_{y}<br>$$</p>
@@ -579,19 +578,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Object Detection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
