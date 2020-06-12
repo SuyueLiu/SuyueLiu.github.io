@@ -17,11 +17,11 @@ toc: true
 
 相比V1 和 V2，V3比较明显的一个改进就是backbone的结构变化，这里推荐一个开源的网络可视化工具：**[Netron](https://github.com/lutzroeder/netron)**, 支持多种网络配置格式。想看YOLO的网络结构的话直接到DarkNet网站上下载相应的 [cfg](https://github.com/AlexeyAB/darknet/tree/master/cfg) 文件，导入即可。
 
-![Netron](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2qixupj30u00yltd4.jpg)
+![Netron](https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Netron.png)
 
 这个Netron 的图看起来还是不够直观，这里借助 [木栈](https://blog.csdn.net/leviopku/article/details/82660381) 大佬的图片来帮助理解V3的网络结构。
 
-![YOLO V3](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2r1r6jj312v0i4din.jpg)
+![YOLO V3](https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO V3.png)
 
 * **DBL**： YOLO V3网络的基本组件，从图中可以看出，DBL由Convolutional layer, Batch Normalization 和 Leaky ReLu 层组成；
 * **res unit**：YOLO V3的新网络开始借鉴 ResNet的思想，在网络中加入残差结构。在一个res unit中有2个DBL 和一个shortcut；
@@ -32,7 +32,7 @@ toc: true
 
 ### 1.1 Backbone
 
-![Darknet-53](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2kh93pj30ow0y4gqh.jpg)
+![Darknet-53](https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Darknet-53.png)
 
 YOLO V3中的Backbone被命名为`Darknet-53`（如上图所示）。但是，在整个V3的网络中，没有池化(pooling)和全连接层，内部张量的尺度变化依靠卷积核的步长变化来实现，例如`stride=(2,2)`, 可以使图像的宽和高都缩小一半。虽然在`Darknet-53`的最后有一个全局的平均池化，但是在V3中实际没有用到这一步。在V3中，张量的尺度变化一共有5次，这就是为什么$608 \* 608$的输入，输出为$19 \* 19(608/2^5)$ 的原因。
 
@@ -57,7 +57,7 @@ YOLO V3沿用了V2中用Kmeans聚类先验边界框(Bounding Box Prior)尺寸的
 
 对于最小的特征图$19 * 19$，应用最大的先验框`(119 * 90), (156 * 198), (373 * 326)`，因为其具有最大的感受野；对于中等大小的特征图$38 * 38$，应用中等大小的先验框 `(30 * 61), (62 * 45), (59 * 119)`；对于最大的特征图`76 * 76`的特征图，应用最小的先验框`(10 * 13),(16 * 30), (33 * 23)`。
 
-![YOLO_V3_BB_pred](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfkh2rmp02j30pk0os0w8.jpg)
+![YOLO_V3_BB_pred](https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO_V3_BB_pred.png)
 
 在YOLO V3中，每个尺度的特征图中的每个格子都会预测3个B-Box，包含边框的位置（x, y, w, h）、object confidence 和80个类别的概率，$N\* N \*[3 \*(4+1+80)]$。例如，对于scale 1，输出结果为$19 \* 19 \* [3 \* (4+1+80)]$。V3在对边框进行预测的时候，采用的是**Logistic Regression**，LR用于对先验框包围的部分进行一个目标性评分(objectness score)，即这块位置是目标的可能性有多大。如果一个先验边界框与真实对象的重叠量大于任何其他先验边界框，则该值为1；如果先验边界框不是最好的，但是与真实对象的重叠量超过某个阈值（V3用的0.5），这个先验框将会被忽略，不会进行预测。这一步是在预测开始之前进行的，V3只会对一个先验框进行操作，也就是最佳的先验框，这样可以去掉不必要的先验框，减少计算量。
 
