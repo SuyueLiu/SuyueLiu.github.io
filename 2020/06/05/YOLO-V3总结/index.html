@@ -17,10 +17,11 @@
 <meta property="og:site_name" content="等风来的企鹅">
 <meta property="og:description" content="由于论文本身写得比较随意，V3里面有很多细节其实作者在论文里都没有提及，在网上看过一些文章之后，把V3里面设计的一些细节都梳理一遍，方便接下来的coding。虽然现在YOLO V4已经出了，但是YOLO V3仍然值得好好研究。">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Netron.png">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLOV3.png">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Darknet-53.png">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO_V3_BB_pred.png">
 <meta property="article:published_time" content="2020-06-05T20:52:08.000Z">
-<meta property="article:modified_time" content="2020-06-12T18:53:29.169Z">
+<meta property="article:modified_time" content="2020-06-12T18:58:07.262Z">
 <meta property="article:author" content="Suyue Liu">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
@@ -237,7 +238,7 @@
 <h2 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1. 网络结构"></a>1. 网络结构</h2><p>相比V1 和 V2，V3比较明显的一个改进就是backbone的结构变化，这里推荐一个开源的网络可视化工具：<strong><a href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener">Netron</a></strong>, 支持多种网络配置格式。想看YOLO的网络结构的话直接到DarkNet网站上下载相应的 <a href="https://github.com/AlexeyAB/darknet/tree/master/cfg" target="_blank" rel="noopener">cfg</a> 文件，导入即可。</p>
 <p><img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Netron.png" alt="Netron"></p>
 <p>这个Netron 的图看起来还是不够直观，这里借助 <a href="https://blog.csdn.net/leviopku/article/details/82660381" target="_blank" rel="noopener">木栈</a> 大佬的图片来帮助理解V3的网络结构。</p>
-<p>![YOLO V3](<a href="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO" target="_blank" rel="noopener">https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO</a> V3.png)</p>
+<p><img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLOV3.png" alt="YOLO V3"></p>
 <ul>
 <li><p><strong>DBL</strong>： YOLO V3网络的基本组件，从图中可以看出，DBL由Convolutional layer, Batch Normalization 和 Leaky ReLu 层组成；</p>
 </li>
