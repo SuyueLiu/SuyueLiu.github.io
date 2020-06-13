@@ -239,12 +239,9 @@
 <p>每个结点的next指针都只指向下一个结点，尾结点的指针指向null。</p>
 <p><img src="http://q9d67m3aq.bkt.clouddn.com/singly_linked_list.png" alt="singly_linked_list"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#definition for a singly linked list</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">    self.val = x</span><br><span class="line">    self.next = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li><p>双向链表 Doubly Linked List</p>
 <p>双向链表中的Node除了有next指针以外，还有一个指向前结点的previous指针。head的prev指针指向Null或者空列表，tail的next指针指向Null或者空列表。</p>
 <p><img src="http://q9d67m3aq.bkt.clouddn.com/doubly_linked_list.png" alt="doubly_linked_list"></p>
@@ -261,42 +258,46 @@
 <p>假设第一级索引在原始链表的基础上以步长2进行搜索，第二级也是如此。假设我们要查询value=8的元素，从最高级索引出发，知道元素链表为止。</p>
 <p>时间复杂度分析：假设原始链表有n个结点，每一级索引都按照2的步长搜索，则第k级索引的结点数为$\frac{n}{2^k}$ , 假设一共有h级索引，最高级只有2个结点，则可计算出跳表的深度为$log_{2}(n)$，即跳表查询的时间复杂度为O(logn)。由于跳表是多维的结构，所以其增加和删除的时间复杂度都为O(logn)。</p>
 <p>空间复杂度分析：无论是以多少为步长进行抽取，最终每一级索引的元素数量之和都是收敛到n的，所以空间复杂度为O(n)。</p>
-<h3 id="4-时间复杂度比较"><a href="#4-时间复杂度比较" class="headerlink" title="4. 时间复杂度比较"></a>4. 时间复杂度比较</h3><table>
+<h3 id="4-时间复杂度比较"><a href="#4-时间复杂度比较" class="headerlink" title="4. 时间复杂度比较"></a>4. 时间复杂度比较</h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center">prepend</th>
-<th align="center">append</th>
-<th align="center">lookup</th>
-<th align="center">insert</th>
-<th align="center">delete</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">prepend</th>
+<th style="text-align:center">append</th>
+<th style="text-align:center">lookup</th>
+<th style="text-align:center">insert</th>
+<th style="text-align:center">delete</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">List</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
-<td align="center">O(n)</td>
-<td align="center">O(n)</td>
+<tbody>
+<tr>
+<td style="text-align:center">List</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
 </tr>
 <tr>
-<td align="center">Linked list</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
-<td align="center">O(n)</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
+<td style="text-align:center">Linked list</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
 </tr>
 <tr>
-<td align="center">Skip list</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">O(logn)</td>
-<td align="center">O(logn)</td>
-<td align="center">O(logn)</td>
+<td style="text-align:center">Skip list</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">O(logn)</td>
+<td style="text-align:center">O(logn)</td>
+<td style="text-align:center">O(logn)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
     
 
@@ -577,15 +578,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">碎碎念</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
