@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/Darknet-53.png">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO_V3_BB_pred.png">
 <meta property="article:published_time" content="2020-06-05T20:52:08.000Z">
-<meta property="article:modified_time" content="2020-06-12T18:58:07.262Z">
+<meta property="article:modified_time" content="2020-06-13T15:28:16.083Z">
 <meta property="article:author" content="Suyue Liu">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
@@ -262,27 +262,27 @@
 </ul>
 <p>作者在论文中也提到了为什么要把小尺度的特征图和和前序网络层次的输出进行拼接，这种方法使我们能够从上采样的特征图中获得更有意义的语义信息，并从早期的特征图中获得更细粒度的信息。</p>
 <h2 id="3-Bounding-box-prediction"><a href="#3-Bounding-box-prediction" class="headerlink" title="3. Bounding box prediction"></a>3. Bounding box prediction</h2><p>YOLO V3沿用了V2中用Kmeans聚类先验边界框(Bounding Box Prior)尺寸的方法，V3中选用K=9，在数据集上总共聚类9种尺寸的先验框，每种尺度的特征图设定3种尺寸。<code>(10 * 13),(16 * 30), (33 * 23), (30 * 61), (62 * 45), (59 * 119), (119 * 90), (156 * 198), (373 * 326)​</code>。</p>
-<p>对于最小的特征图$19 <em> 19$，应用最大的先验框`(119 </em> 90), (156 <em> 198), (373 </em> 326)<code>，因为其具有最大的感受野；对于中等大小的特征图$38 * 38$，应用中等大小的先验框</code>(30 <em> 61), (62 </em> 45), (59 <em> 119)<code>；对于最大的特征图</code>76 </em> 76<code>的特征图，应用最小的先验框</code>(10 <em> 13),(16 </em> 30), (33 * 23)`。</p>
+<p>对于最小的特征图$19 * 19$，应用最大的先验框<code>(119 * 90), (156 * 198), (373 * 326)</code>，因为其具有最大的感受野；对于中等大小的特征图$38 * 38$，应用中等大小的先验框 <code>(30 * 61), (62 * 45), (59 * 119)</code>；对于最大的特征图<code>76 * 76</code>的特征图，应用最小的先验框<code>(10 * 13),(16 * 30), (33 * 23)</code>。</p>
 <p><img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/YOLO_V3_BB_pred.png" alt="YOLO_V3_BB_pred"></p>
 <p>在YOLO V3中，每个尺度的特征图中的每个格子都会预测3个B-Box，包含边框的位置（x, y, w, h）、object confidence 和80个类别的概率，$N* N *[3 *(4+1+80)]$。例如，对于scale 1，输出结果为$19 * 19 * [3 * (4+1+80)]$。V3在对边框进行预测的时候，采用的是<strong>Logistic Regression</strong>，LR用于对先验框包围的部分进行一个目标性评分(objectness score)，即这块位置是目标的可能性有多大。如果一个先验边界框与真实对象的重叠量大于任何其他先验边界框，则该值为1；如果先验边界框不是最好的，但是与真实对象的重叠量超过某个阈值（V3用的0.5），这个先验框将会被忽略，不会进行预测。这一步是在预测开始之前进行的，V3只会对一个先验框进行操作，也就是最佳的先验框，这样可以去掉不必要的先验框，减少计算量。</p>
-<p>如上图所示，图中的虚线框为Kmeans得到的先验框，实线框是通过YOLO V3预测的偏移量计算出来的预测边界框。其中，$（C_{x},C_{y}）$ 是先验框在特征图上的中心坐标，$P_{w},P_{h}$是先验框的宽和高；$(t_{x}, t_{y})$ 是预测边界框中心相对于先验框的中心的偏移量， $t_{w}, t_{h}$ 是预测边界框的宽高缩放比；$(b_{x}, b_{y}, b_{w}, b_{h})$ 是最终预测的目标边界框的绝对位置和尺寸，$\sigma(x)$是Sigmoid函数（在图中用s(x)表示），其目的是将预测的中心偏移量约束到0和1之间，保证预测的边界框的中心坐标在一个cell当中。通过下面的公式便可计算得到预测边框的位置和尺度。\</p>
+<p>如上图所示，图中的虚线框为Kmeans得到的先验框，实线框是通过YOLO V3预测的偏移量计算出来的预测边界框。其中，$（C_{x},C_{y}）$ 是先验框在特征图上的中心坐标，$P_{w},P_{h}$是先验框的宽和高；$(t_{x}, t_{y})$ 是预测边界框中心相对于先验框的中心的偏移量， $t_{w}, t_{h}$ 是预测边界框的宽高缩放比；$(b_{x}, b_{y}, b_{w}, b_{h})$ 是最终预测的目标边界框的绝对位置和尺寸，$\sigma(x)$是Sigmoid函数（在图中用s(x)表示），其目的是将预测的中心偏移量约束到0和1之间，保证预测的边界框的中心坐标在一个cell当中。通过下面的公式便可计算得到预测边框的位置和尺度。</p>
 <script type="math/tex; mode=display">
 b_{x} = \sigma(t_{x}) + C_{x}</script><script type="math/tex; mode=display">
 b_{y} = \sigma(t_{y}) + C_{y}</script><script type="math/tex; mode=display">
-b_{w} = P_{w}\* e^{t_{w}}</script><script type="math/tex; mode=display">
-b_{h} = P_{h}\* e^{t_{h}}</script><h2 id="4-损失函数"><a href="#4-损失函数" class="headerlink" title="4. 损失函数"></a>4. 损失函数</h2><p>关于YOLO V3的损失函数论文里面少有提及，只有V1的论文里面列出了明确的损失函数公式。总体而言，V3的损失函数还是由三部分组成：目标置信度损失，目标分类损失和目标定位损失。但其中的一些细节方面还是做了改进。</p>
+b_{w} = P_{w} * e^{t_{w}}</script><script type="math/tex; mode=display">
+b_{h} = P_{h} * e^{t_{h}}</script><h2 id="4-损失函数"><a href="#4-损失函数" class="headerlink" title="4. 损失函数"></a>4. 损失函数</h2><p>关于YOLO V3的损失函数论文里面少有提及，只有V1的论文里面列出了明确的损失函数公式。总体而言，V3的损失函数还是由三部分组成：目标置信度损失，目标分类损失和目标定位损失。但其中的一些细节方面还是做了改进。</p>
 <h3 id="4-1-Objectness-confidence-loss"><a href="#4-1-Objectness-confidence-loss" class="headerlink" title="4.1 Objectness confidence loss"></a>4.1 Objectness confidence loss</h3><p>目标置信度可理解为预测框内存在目标的概率，目标置信度损失$L_{conf}(o,c)$采用二值交叉熵（binary cross-entropy），其中$o_{i}\in\{0,1\}$ 表示预测的边界框中是否含有目标，$o_{i} = 0$表示不存在，$o_{i} = 1$表示存在。$\hat{c}_{i}$表示预测边框 $i$ 內是否存在目标的Sigmoid概率。</p>
 <script type="math/tex; mode=display">
 L_{conf} = - \sum(o_{i} * ln(\hat{c_{i}}) + (1-o_{i}) * ln(1 - \hat{c_{i}})\\</script><script type="math/tex; mode=display">
 \hat{c_{i}} = Sigmoid(c_{i})</script><p>由于V3只会对一个先验框进行操作，如果一个先验框未被分配给任何一个目标对象，那么这个先验框就不存在定位和分类损失，只存在目标置信度损失。</p>
 <h3 id="4-2-Classification-loss"><a href="#4-2-Classification-loss" class="headerlink" title="4.2 Classification loss"></a>4.2 Classification loss</h3><p>目标类别损失$L_{class}(O,C)$同样采取二值交叉熵损失，作者在文中提到这样做是应为一个可能属于多个类别，例如一个人同时属于“人”和“男人”两个类别，使用Softmax的时候会假设每个预测框中的对象只属于一个类别，但事实往往不是这样的。但这个也要分具体的使用场景，如果训练数据中每个目标只有一个标签（只属于一个类别），也许不使用二值交叉熵也能有很好的效果。$L_{class}(O,C)$中 $O_{ij} \in {0,1}$表示预测边框 $i$ 中是否正式存在目标属于第 $j$ 类，0表示不存在，1表示存在。$\hat{C}_{ij}$ 表示预测边框 i 內是否存在第 j 类目标的Sigmoid概率。</p>
-<script type="math/tex; mode=display">L_{class} = - \sum_{i\in Position} \sum_{j\in classes} (O_ij \* ln(\hat{C}_ij) + (1-O_ij) \* ln(1- \hat{C}_ij))</script><script type="math/tex; mode=display">\hat{C}_ij = Sigmoid(C_ij)</script><h3 id="4-3-Localization-loss"><a href="#4-3-Localization-loss" class="headerlink" title="4.3 Localization loss"></a>4.3 Localization loss</h3><p>目标定位损失$L_{loc}(l,g)$采用真实偏差值与预测偏差值的差的平方和，其中$\hat{l}$ 表示预测边框与先验框(bounding box prior)之间的坐标偏移量（注意网络预测输出的是偏移量，而不是觉得位置），$\hat{g}$ 表示预测边框相对应的真实边框(ground truth box)与先验框之间的坐标偏移量。$(b^x, b^y, b^w, b^h)$ 为最终预测边框的参数（位置和尺寸，不是偏移量），$(c^x, c^y, p^w, p^h)$为先验框的参数，$(g^2, g^y,g^w,g^h)$为与预测边框匹配的真实目标矩形框的参数。</p>
+<script type="math/tex; mode=display">L_{class} = - \sum_{i\in Position} \sum_{j\in classes} (O_{ij} * ln(\hat{C}_{ij}) + (1-O_{ij}) * ln(1- \hat{C}_{ij}))</script><script type="math/tex; mode=display">\hat{C}_ij = Sigmoid(C_{ij})</script><h3 id="4-3-Localization-loss"><a href="#4-3-Localization-loss" class="headerlink" title="4.3 Localization loss"></a>4.3 Localization loss</h3><p>目标定位损失$L_{loc}(l,g)$采用真实偏差值与预测偏差值的差的平方和，其中$\hat{l}$ 表示预测边框与先验框(bounding box prior)之间的坐标偏移量（注意网络预测输出的是偏移量，而不是觉得位置），$\hat{g}$ 表示预测边框相对应的真实边框(ground truth box)与先验框之间的坐标偏移量。$(b^x, b^y, b^w, b^h)$ 为最终预测边框的参数（位置和尺寸，不是偏移量），$(c^x, c^y, p^w, p^h)$为先验框的参数，$(g^2, g^y,g^w,g^h)$为与预测边框匹配的真实目标矩形框的参数。</p>
 <script type="math/tex; mode=display">
 L_{loc}(l,g) = \sum_{i\in Position} \sum_{m\in \{x,y,w,h\} } (\hat{l}_i^{m} - \hat{g}_l^{m})</script><script type="math/tex; mode=display">
-\* 预测边框和先验框在坐标上的偏差 \*</script><script type="math/tex; mode=display">
+* 预测边框和先验框在坐标上的偏差 *</script><script type="math/tex; mode=display">
 \hat{l}_i^{x} = b_i^{x} - c_i^{x}\qquad  \hat{l}_i^{y} = b_i^{y} - c_i^{y}</script><script type="math/tex; mode=display">
 \hat{l}_i^{w} = log(b_i^w / p_i^{w})\qquad  \hat{l}_i^{h} = log(b_i^h / p_i^{h})</script><script type="math/tex; mode=display">
-\* 真实边框与先验框坐标上的偏差 \*</script><script type="math/tex; mode=display">
+* 真实边框与先验框坐标上的偏差 *</script><script type="math/tex; mode=display">
 \hat{g}_i^{x} = g_i^{x} - c_i^{x}\qquad \hat{g}_i^{y} = g_i^{y} - c_i^{y}</script><script type="math/tex; mode=display">
 \hat{g}_i^{w} = log(g_i^w / p_i^{w})\qquad  \hat{g}_i^{h} = log(g_i^h / p_g^{h})</script><h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>看完网上的帖子，写完blog，基本上解答了我在读论文的时候产生的一些疑问。</p>
 <ol>
@@ -412,15 +412,6 @@ L_{loc}(l,g) = \sum_{i\in Position} \sum_{m\in \{x,y,w,h\} } (\hat{l}_i^{m} - \h
 
 
 <nav id="article-nav">
-  
-    <a href="/2020/06/13/SSD-Review/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          SSD-Review
-        
-      </div>
-    </a>
   
   
     <a href="/2020/04/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%8C%E6%98%A0%E5%B0%84%EF%BC%8C%E9%9B%86%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
@@ -595,11 +586,11 @@ L_{loc}(l,g) = \sum_{i\in Position} \sum_{m\in \{x,y,w,h\} } (\hat{l}_i^{m} - \h
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
