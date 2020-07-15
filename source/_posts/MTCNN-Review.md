@@ -11,8 +11,6 @@ toc: true
 
 <!--toc-->
 
-# MTCNN总结
-
 MTCNN全称 "Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks"，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键点（landmarks）的定位，但只在O-Net输出关键点。 <!--more-->
 
 ## 1. 网络结构
