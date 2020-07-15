@@ -10,19 +10,19 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="MTCNN总结MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键">
+  <meta name="description" content="MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键点（landm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MTCNN Review">
 <meta property="og:url" content="http://suyueliu.top/2020/07/15/MTCNN-Review/index.html">
 <meta property="og:site_name" content="等风来的企鹅">
-<meta property="og:description" content="MTCNN总结MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键">
+<meta property="og:description" content="MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键点（landm">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/%E6%88%AA%E5%B1%8F2020-07-13%20%E4%B8%8B%E5%8D%886.58.32.png">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/face-pyramid.png">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/P-Net.png">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/R-Net.png">
 <meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/O-Net.png">
 <meta property="article:published_time" content="2020-07-15T11:48:29.000Z">
-<meta property="article:modified_time" content="2020-07-15T12:04:08.202Z">
+<meta property="article:modified_time" content="2020-07-15T12:06:22.737Z">
 <meta property="article:author" content="Suyue Liu">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
@@ -234,7 +234,7 @@
   <div class="article-entry" itemprop="articleBody">
     
     <!--toc-->
-<h1 id="MTCNN总结"><a href="#MTCNN总结" class="headerlink" title="MTCNN总结"></a>MTCNN总结</h1><p>MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键点（landmarks）的定位，但只在O-Net输出关键点。 <a id="more"></a></p>
+<p>MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键点（landmarks）的定位，但只在O-Net输出关键点。 <a id="more"></a></p>
 <h2 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1. 网络结构"></a>1. 网络结构</h2><div align=center>
 <img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/截屏2020-07-13 下午6.58.32.png" style="zoom:80%;" />
 </div>
@@ -517,7 +517,7 @@ L_{total}=min\sum_{i=1}^{N}\sum_{j\in \{det,box,landmark\}} \quad \alpha_{j} \be
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MTCNN总结"><span class="toc-number">1.</span> <span class="toc-text">MTCNN总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-网络结构"><span class="toc-number">1.1.</span> <span class="toc-text">1. 网络结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-图像金字塔"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 图像金字塔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-P-Net"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 P-Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-R-Net"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 R-Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-O-Net"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 O-Net</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-训练过程"><span class="toc-number">1.2.</span> <span class="toc-text">2. 训练过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-损失函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-人脸分类"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 人脸分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-边界框回归"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2.1.2 边界框回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-面部关键点定位"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">2.1.3 面部关键点定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多源训练"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 多源训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-困难样本挖掘"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 困难样本挖掘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-训练数据"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 训练数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-其他"><span class="toc-number">1.3.</span> <span class="toc-text">3. 其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对我的启发"><span class="toc-number">1.4.</span> <span class="toc-text">对我的启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">1.5.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-网络结构"><span class="toc-number">1.</span> <span class="toc-text">1. 网络结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-图像金字塔"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 图像金字塔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-P-Net"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 P-Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-R-Net"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 R-Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-O-Net"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 O-Net</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-训练过程"><span class="toc-number">2.</span> <span class="toc-text">2. 训练过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-损失函数"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-人脸分类"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 人脸分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-边界框回归"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2 边界框回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-面部关键点定位"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 面部关键点定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多源训练"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 多源训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-困难样本挖掘"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 困难样本挖掘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-训练数据"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 训练数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-其他"><span class="toc-number">3.</span> <span class="toc-text">3. 其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对我的启发"><span class="toc-number">4.</span> <span class="toc-text">对我的启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -649,15 +649,15 @@ L_{total}=min\sum_{i=1}^{N}\sum_{j\in \{det,box,landmark\}} \quad \alpha_{j} \be
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Object Detection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
