@@ -6,21 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://suyueliu.top">
-  <title>Python中类的创建和使用？ | 等风来的企鹅</title>
+  <title>MTCNN Review | 等风来的企鹅</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1. 创建和使用类一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。 2. Python对象实例化python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的">
+  <meta name="description" content="MTCNN总结MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python中类的创建和使用？">
-<meta property="og:url" content="http://suyueliu.top/2020/04/08/Python%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%EF%BC%9F/index.html">
+<meta property="og:title" content="MTCNN Review">
+<meta property="og:url" content="http://suyueliu.top/2020/07/15/MTCNN-Review/index.html">
 <meta property="og:site_name" content="等风来的企鹅">
-<meta property="og:description" content="1. 创建和使用类一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。 2. Python对象实例化python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的">
-<meta property="article:published_time" content="2020-04-07T23:10:26.000Z">
-<meta property="article:modified_time" content="2020-04-11T21:45:10.455Z">
+<meta property="og:description" content="MTCNN总结MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/%E6%88%AA%E5%B1%8F2020-07-13%20%E4%B8%8B%E5%8D%886.58.32.png">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/face-pyramid.png">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/P-Net.png">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/R-Net.png">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/O-Net.png">
+<meta property="article:published_time" content="2020-07-15T11:48:29.000Z">
+<meta property="article:modified_time" content="2020-07-15T12:04:08.202Z">
 <meta property="article:author" content="Suyue Liu">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Object Detection">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/%E6%88%AA%E5%B1%8F2020-07-13%20%E4%B8%8B%E5%8D%886.58.32.png">
   
     <link rel="alternative" href="/atom.xml" title="等风来的企鹅" type="application/atom+xml">
   
@@ -178,22 +185,22 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python的面向对象是怎么回事？" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MTCNN-Review" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Python中类的创建和使用？
+      MTCNN Review
     </h1>
   
 
 
   
   
-<a href="/2020/04/08/Python%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%EF%BC%9F/" class="archive-article-date">
-        <time datetime="2020-04-07T23:10:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
+<a href="/2020/07/15/MTCNN-Review/" class="archive-article-date">
+        <time datetime="2020-07-15T11:48:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
 </a>
 
   
@@ -206,7 +213,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.3k字</span>
+      <span class="post-count">2.2k字</span>
     </span>
   </span>
 
@@ -215,7 +222,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">5分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -226,24 +233,159 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="1-创建和使用类"><a href="#1-创建和使用类" class="headerlink" title="1. 创建和使用类"></a>1. 创建和使用类</h2><p>一个类只提供定义一种对象的结构，如用class Dog()来记录小狗。我们都知道每个狗狗都有姓名和年龄，这是所有狗的通用属性。小狗还能蹲下和打滚，这种行为每个狗狗都会，在类的定义中称为方法。 这两项信息属于定义小狗实例所必须的，但是实际上在Dog()中不会包含任何特定的小狗。</p>
-<h2 id="2-Python对象实例化"><a href="#2-Python对象实例化" class="headerlink" title="2. Python对象实例化"></a>2. Python对象实例化</h2><p>python中的类设定了定义一个对象所需要的属性和方法，实例是指具有实际值的类的副本，例如Dog()中的一只具体的小狗，例如Tom，3岁，表示有一只3岁的小狗叫Tom。<br>可以把类比做一个表格，这个表格设定了所有要记录的东西，每记录一个/组数据就是一个实例。<a id="more"></a></p>
-<h2 id="3-Python中定义类"><a href="#3-Python中定义类" class="headerlink" title="3. Python中定义类"></a>3. Python中定义类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">()</span>:</span></span><br><span class="line">    species = ‘mammal’</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sit</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name.title() + <span class="string">'is now sitting'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">roll_over</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name.title() + <span class="string">'rolled over'</span>)</span><br></pre></td></tr></table></figure>
-<p>在python3中用class关键字 + 类名称 来定义类。在python2中还需要指定类中继承的父类，python3中改为隐式默认值了。<br>类中的函数称为方法，如<strong>init</strong>, sit(), roll_over()都是方法。但是这里的<strong>init</strong>属于一个特殊的方法，每当你根据Dog类来创建一个实例时，程序都会自动运行这个方法给每个对象赋于name和age两个属性。 </p>
-<p>在这里<strong>init</strong>(self, name, age)方法具有三个形参，self、name、age。其中形参self是必不可少的，且必须位于其余的形参之前。在创建Dog类的实例时，将自动传入实参slef。每个与类相关联的方法的调用都会自动传入实参self，他是一个指向实例本身的引用，每个实例都能够访问类的属性和方法。对于<strong>init</strong>方法中的形参name和age，在创建实例的时候必须传入相应的值。<br>注意这里self.name和self.age 定义的是name和age两个变量，和形参name和age不同。用self为前缀的变量都可被类中所有的方法使用。我们还可以通过类的所有实例来访问这些变量</p>
-<p>类属性有别于实例属性。实例属性是每个特定实例所特有的属性、特征，如每一条狗的名字和年纪。类属性是所有属于这个类的实例所具有的属性，如这里的species = ‘mammal’，所有的小狗都属于mammal。</p>
-<h2 id="4-创建类的实例"><a href="#4-创建类的实例" class="headerlink" title="4. 创建类的实例"></a>4. 创建类的实例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_dog = Dog(<span class="string">'wills'</span>, <span class="number">6</span>)</span><br><span class="line">your_dog = Dog(<span class="string">'Tom'</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>这两条代码分别创建了一条名为“wills”年龄6岁的小狗和名为“Tom”年龄为3岁的小狗，并把这两个实例分别存储到变量my_dog和your_dog里面，通过“句点法”我们便可访问实例的属性和调用类的方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">my_dog = Dog(<span class="string">'wills'</span>, <span class="number">6</span>)</span><br><span class="line">my_dog.sit()</span><br><span class="line">print(my_dog.name + <span class="string">' is my dog, '</span> + <span class="string">'he is '</span> + str(my_dog.age) + <span class="string">' years old.'</span>)</span><br><span class="line"></span><br><span class="line">your_dog = Dog(<span class="string">'Tom'</span>, <span class="number">3</span>)</span><br><span class="line">your_dog.roll_over()</span><br><span class="line">print(<span class="string">'Your dog is '</span> + your_dog.name + <span class="string">', he is '</span> + str(your_dog.age) + <span class="string">' years old.'</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="5-使用类和属性"><a href="#5-使用类和属性" class="headerlink" title="5. 使用类和属性"></a>5. 使用类和属性</h2><h3 id="5-1-给定属性的初始值-默认值"><a href="#5-1-给定属性的初始值-默认值" class="headerlink" title="5.1 给定属性的初始值/默认值"></a>5.1 给定属性的初始值/默认值</h3><p>有时候我们需要给类里面的某个熟悉设定一个初始值或者默认值，可直接在<strong>init</strong>方法中指定相应的值，如果用这种方法的话，可无须在<strong>init</strong>中指定相应的形参。<br>我们重新定义一个Car()类：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, make, model, year)</span>:</span></span><br><span class="line">        self.make = make</span><br><span class="line">        self.model = model</span><br><span class="line">        self.year = year</span><br><span class="line">        self.odometer_reading = <span class="number">0</span> <span class="comment">#如果在__init__内指定属性的初始值，无需包含为他提供初始值的形参</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_descriptive</span><span class="params">(self)</span>:</span></span><br><span class="line">        long_name = str(self.year) + <span class="string">'  '</span> + self.make + <span class="string">'  '</span> + self.model</span><br><span class="line">        <span class="keyword">return</span> long_name.title()</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">read_odometer</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'This car has '</span> + str(self.odometer_reading) + <span class="string">' miles on it.'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>这里定义的Car()类除了self之外还包含三个形参：make, model, year, 我们想要设定汽车里程记初始值为0，但我们并未指定相应的形参。<br>下面创建一个实例，并调用方法get_descriptive()和read_odometer()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_car = Car(<span class="string">'audi'</span>, <span class="string">'a4'</span>, <span class="number">2016</span>)</span><br><span class="line">print(my_car.get_descriptive())</span><br><span class="line">my_car.read_odometer()</span><br></pre></td></tr></table></figure></p>
-<h3 id="5-2-修改属性的值"><a href="#5-2-修改属性的值" class="headerlink" title="5.2 修改属性的值"></a>5.2 修改属性的值</h3><p>有时候我们需要修改某个熟悉的值，这里提供三种方法：</p>
-<h4 id="5-2-1-直接修改"><a href="#5-2-1-直接修改" class="headerlink" title="5.2.1 直接修改"></a>5.2.1 直接修改</h4><pre><code>my_car.odometer_reading = 23
-my_car.read_odometer()
-</code></pre><p>最简单的一种方法，通过实例访问属性并修改。但是这种方法无法对赋值的过程进行限定，比如没办法限制回调里程记。</p>
-<h4 id="5-2-2-创建一个方法来更新属性的值"><a href="#5-2-2-创建一个方法来更新属性的值" class="headerlink" title="5.2.2 创建一个方法来更新属性的值"></a>5.2.2 创建一个方法来更新属性的值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_odometer</span><span class="params">(self, mileage)</span>:</span></span><br><span class="line">    <span class="string">'''禁止他人将里程表的值回调'''</span></span><br><span class="line">    <span class="keyword">if</span> mileage &gt;= self.odometer_reading:</span><br><span class="line">        self.odometer_reading = mileage</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'You cannot roll back an odometer'</span>)</span><br><span class="line"></span><br><span class="line">my_car.update_odometer(<span class="number">560</span>)</span><br><span class="line">my_car.read_odometer()</span><br></pre></td></tr></table></figure>
-<p>在类里面定义一个新的方法update_odometer()，并设定一个形参mileage来接收新的实参，并且用if判断禁止回调里程记。</p>
-<h4 id="5-2-3-定义一个新的方法对属性的值进行递增"><a href="#5-2-3-定义一个新的方法对属性的值进行递增" class="headerlink" title="5.2.3 定义一个新的方法对属性的值进行递增"></a>5.2.3 定义一个新的方法对属性的值进行递增</h4><p>这个方法其实和第二个类似，只是修改了更新的规则，可每次增加传入的miles的值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increase_odometer</span><span class="params">(self, miles)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> miles &gt;= <span class="number">0</span>:</span><br><span class="line">        self.odometer_reading += miles</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'You cannot roll back an odometer.'</span>)</span><br></pre></td></tr></table></figure></p>
+    <!--toc-->
+<h1 id="MTCNN总结"><a href="#MTCNN总结" class="headerlink" title="MTCNN总结"></a>MTCNN总结</h1><p>MTCNN全称 “Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks”，采用级联网络的思想将人脸检测和人脸对齐放在一起进行。总的来说，MTCNN可以分为三个子网络P-Net, R-Net和O-Net，每个网络都要做人脸分类、bounding boxes预测以及人脸关键点（landmarks）的定位，但只在O-Net输出关键点。 <a id="more"></a></p>
+<h2 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1. 网络结构"></a>1. 网络结构</h2><div align=center>
+<img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/截屏2020-07-13 下午6.58.32.png" style="zoom:80%;" />
+</div>
+
+<center>
+🔍 source: <a href="https://github.com/kpzhang93/MTCNN_face_detection_alignment/tree/master/paper" target="_blank" rel="noopener">paper</a>
+</center>
+
+<h3 id="1-1-图像金字塔"><a href="#1-1-图像金字塔" class="headerlink" title="1.1 图像金字塔"></a>1.1 图像金字塔</h3><p>对于每一张输入图片，MTCNN都会对其进行缩放以构成一个图像金字塔，这些不同大小的图片作为后续级联网络的输入，以提高模型对不同大小的人脸的检测能力。</p>
+<div align=center>
+<img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/face-pyramid.png" style="zoom:100%;" />
+</div>
+
+
+<h3 id="1-2-P-Net"><a href="#1-2-P-Net" class="headerlink" title="1.2 P-Net"></a>1.2 P-Net</h3><p>P-Net（Proposal Network）是一个全卷积网络（Fully Convolutional Network），采用结构较为简单的网络提取图片特征和标定边框，并通过bounding box regression和NMS对边界框进行调整得到一系列人脸候选框。这有点类似于two-stage detector的候选框proposal环节。</p>
+<p>P-Net中最后一个卷积层的输出被分为2个分支，分别经过<code>Conv4-1</code>和<code>Conv4-2</code>，<code>Conv4-1</code>的输出经过Softmax之后得到某个bounding box区域属于人脸类别的置信度，<code>Conv4-2</code>直接输出bounding boxes坐标。</p>
+<div align=center>
+<img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/P-Net.png" style="zoom:80%;" />
+</div>
+
+<center>
+    🔍 source: <a href="https://github.com/happynear/MTCNN_face_detection_alignment/blob/master/code/codes/MTCNNv2/model/det1.caffemodel" target="_blank" rel="noopener">MTCNN_face_detection_alignment</a>
+</center>
+
+<p>论文中给出的P-Net的第三个卷积层之后其实是分成了三个分支，分别预测类别，回归边框以及预测面部关键点的位置，但是在作者GitHub的<a href="https://github.com/happynear/MTCNN_face_detection_alignment/blob/master/code/codes/MTCNNv2/model/det1.prototxt" target="_blank" rel="noopener">代码</a>里面却只有两个分支，没有计算面部关键点的位置。猜想这样做的原因是P-Net对面部关键点位置的计算可能并没有太大帮助，同时，取消这一步还能提高P-Net的运算速度。</p>
+<h3 id="1-3-R-Net"><a href="#1-3-R-Net" class="headerlink" title="1.3 R-Net"></a>1.3 R-Net</h3><p>R-Net（Refine Network）与P-Net类似，但是相比于P-Net来说，其增加了一个全连接层。R-Net接收P-Net的输出作为输入，进一步滤除效果较差的候选框，对剩余的候选框采用bounding-box regression 和 NMS进一步优化结果。</p>
+<div align=center>
+<img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/R-Net.png" style="zoom:80%;" />
+</div>
+
+<center>
+    🔍 source: <a href="https://github.com/happynear/MTCNN_face_detection_alignment/blob/master/code/codes/MTCNNv2/model/det2.caffemodel" target="_blank" rel="noopener">MTCNN_face_detection_alignment</a>
+</center>
+
+<p>P-Net中全卷积的输出是$1\times 1\times 32$的特征图，R-Net在全卷积后通过一个$128$的全连接层，能够保留更多的图像特征，加上R-Net的输入是具有一定可信度的候选框，这样能够为O-Net提供更高准确度特征。</p>
+<h3 id="1-4-O-Net"><a href="#1-4-O-Net" class="headerlink" title="1.4 O-Net"></a>1.4 O-Net</h3><p>O-Net（Output-Network）相比于R-Net增加了一个卷积层，最后的全连接层换成了256，能够更为精确的判别候选边框和定位人脸关键点。</p>
+<div align=center>
+<img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/O-Net.png" style="zoom:100%;" />
+</div>
+
+<p><center>
+    🔍 source: <a href="https://github.com/happynear/MTCNN_face_detection_alignment/blob/master/code/codes/MTCNNv2/model/det3.caffemodel" target="_blank" rel="noopener">MTCNN_face_detection_alignment</a>
+</center></p>
+<h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2. 训练过程"></a>2. 训练过程</h2><h3 id="2-1-损失函数"><a href="#2-1-损失函数" class="headerlink" title="2.1 损失函数"></a>2.1 损失函数</h3><h4 id="2-1-1-人脸分类"><a href="#2-1-1-人脸分类" class="headerlink" title="2.1.1 人脸分类"></a>2.1.1 人脸分类</h4><p>人脸检测中的分类其实是属于二分类问题，论文中采用交叉熵损失（cross-entropy loss），对于样本$x_{i}$，有如下定义：</p>
+<script type="math/tex; mode=display">
+L_{i}^{det} = -(y_{i}^{det}log(p_{i}) + (1-y_{i}^{det})(1-log(p_{i})))</script><p>其中，$p_{i}$是网络输出的候选框是人脸的概率，$y_{i}^{det}\in \{0, 1\}$是第i个样本的标签。</p>
+<h4 id="2-1-2-边界框回归"><a href="#2-1-2-边界框回归" class="headerlink" title="2.1.2 边界框回归"></a>2.1.2 边界框回归</h4><p>对于每个候选框，网络预测的是其与最近的真实边框的坐标偏移。边界框回归采用的是欧几里德损失（Euclidean loss）：</p>
+<script type="math/tex; mode=display">
+L_{i}^{box} = ||\hat{y}_{i}^{box} - y_{i}^{box}||_{2}^{2}</script><p>其中，$\hat{y}_{i}^{box}$是网络输出的边框坐标，$y_{i}^{box}$是真实的边框坐标，$y_{i}^{box}\in R^{4}$ (left top, width, height) 。</p>
+<h4 id="2-1-3-面部关键点定位"><a href="#2-1-3-面部关键点定位" class="headerlink" title="2.1.3 面部关键点定位"></a>2.1.3 面部关键点定位</h4><p>面部关键点的定位也是采用回归的方法，同样采用Euclidean loss：</p>
+<script type="math/tex; mode=display">
+L_{i}^{landmark} = ||\hat{y}_{i}^{landmark} - y_{i}^{landmark}||_{2}^{2}</script><p>其中，$\hat{y}_{i}^{landmark}$是网络输出的5个关键点的坐标，$y_{i}^{landmark}$是真实的关键点坐标，$y_{i}^{landmark}\in R^{10}$ (left eye, right eye, nose, left mouth corner, right mouth corner) 。</p>
+<h3 id="2-2-多源训练"><a href="#2-2-多源训练" class="headerlink" title="2.2 多源训练"></a>2.2 多源训练</h3><p>每个网络都有各自的任务，训练的时候也是输入不同的图片，所以在训练过程中有些损失函数会暂时不用。例如，当处理只有背景（无人脸）的照片时，MTCNN只计算分类的损失$L_{i}^{det}$，其余两个损失不计算。所以总的损失函数表示为：</p>
+<script type="math/tex; mode=display">
+L_{total}=min\sum_{i=1}^{N}\sum_{j\in \{det,box,landmark\}} \quad \alpha_{j} \beta_{i}^{j}L_{i}^{j}</script><p>其中，N是训练的样本总数；$\beta_{i}^{j}\in \{0, 1\}$ 是样本类型的指示标志，对于特定类型的训练样本，消除某个损失函数的影响；$\alpha_{j}$表示某个任务的重要性，论文中用的值如下所示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Network</th>
+<th style="text-align:center">$\alpha_{det}$</th>
+<th style="text-align:center">$\alpha_{box}$</th>
+<th style="text-align:center">$\alpha_{landmark}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">P-Net</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.5</td>
+<td style="text-align:center">0.5</td>
+</tr>
+<tr>
+<td style="text-align:center">R-Net</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.5</td>
+<td style="text-align:center">0.5</td>
+</tr>
+<tr>
+<td style="text-align:center">O-Net</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.5</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-3-困难样本挖掘"><a href="#2-3-困难样本挖掘" class="headerlink" title="2.3 困难样本挖掘"></a>2.3 困难样本挖掘</h3><p>文中提出的困难样本挖掘也是本文的一大亮点。那么什么是困难样本挖掘呢？困难负样本是训练在模型过程中难以区分的负样本。模型通常对正样本有较高的置信度，对负样本有较低（接近于0）的置信度，但是也难免存在一些负样本使得模型对他们那么确定。困难负样本挖掘（Hard Example Mining）就是找到这些负样本。</p>
+<p>本文提出来的在线困难样本挖掘（Online Hard Example Mining）方法只在训练阶段的人脸分类中进行，这里的“在线”指的应该是在训练阶段同步进行。具体做法是：对于每一个训练batch中的样本，按照前向传播中计算出来的loss排序，选出前70%的样本作为困难样本。在反向传播中，只计算困难样本的梯度并用此梯度来更新参数。</p>
+<h3 id="2-4-训练数据"><a href="#2-4-训练数据" class="headerlink" title="2.4 训练数据"></a>2.4 训练数据</h3><p>由于本文将人脸识别和对齐结合起来，在训练中一共用了4种不同的标签：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Annotation</th>
+<th style="text-align:center">Rule</th>
+<th style="text-align:center">Usage</th>
+<th style="text-align:center">Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Negative</td>
+<td style="text-align:center">IoU &lt; 0.3</td>
+<td style="text-align:center">Face classification</td>
+<td style="text-align:center">0.3</td>
+</tr>
+<tr>
+<td style="text-align:center">Positive</td>
+<td style="text-align:center">IoU &gt; 0.65</td>
+<td style="text-align:center">Face classification, Bounding box regression</td>
+<td style="text-align:center">0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">Part faces</td>
+<td style="text-align:center">0.4 &lt; IoU &lt; 0.65</td>
+<td style="text-align:center">Bounding box regression</td>
+<td style="text-align:center">0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">Landmark faces</td>
+<td style="text-align:center">5 landmark’s positions</td>
+<td style="text-align:center">Facial landmark localization</td>
+<td style="text-align:center">0.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<font size=2 >为什么要在Negative和part faces之间留0.1的IoU gap？ 这部分样本属于什么类型？四种类型的比例之和并不为1，剩余部分的样本属于什么类型？</font>
+
+</blockquote>
+<p>每个网络的输入数据如下：</p>
+<p>P-Net：从WIDER FACE数据集中随机随机裁剪得到Positive, Negative 和 Part faces；从CelebA中得到Landmark faces，输入P-Net的图片尺寸是<code>12*12*3</code>。</p>
+<p>R-Net和O-Net分别接收来自前一级网络输出的<code>24*24*3</code>，<code>48*48*3</code>的特征图。</p>
+<hr>
+<h2 id="3-其他"><a href="#3-其他" class="headerlink" title="3. 其他"></a>3. 其他</h2><ul>
+<li>MTCNN卷积网络中采用的是PReLU激活函数，为带参数的ReLU函数。相比于ReLU直接滤除负值，PReLU引入参数对负值有所保留。该参数也是可学习的，允许不同的神经元具有不同的参数，这在一定程度上提高了模型的性能。</li>
+<li>Bounding box regression：和YOLO一样，把边界框定位看成是回归问题。在图像检测中，边界框属性包含在一个4维的向量中，表示边界框中心的坐标和宽高，在回归问题中，网络预测的是边界框中心坐标相对于ground-truth坐标的偏移量，以及边界框宽高相对于ground-truth的缩放比。这些偏差值将会用来对预测边界框进行微调。与YOLO V3不同的一点是，MTCNN没有用到anchor的思想。</li>
+<li>NMS：MTCNN在每一级网络都采用NMS滤除大量无效的和重合度高的候选边界框。</li>
+<li>全卷积网络：在MTCNN的P-Net中采用了全卷积网络，全卷积网络是去除了传统卷积网络架构中的全连接层。全卷积网络的一个好处是可以接受任意尺寸的输入图片，采用反卷积层对最后一个卷积层的特征图进行上采样，使它恢复到输入图片尺寸。</li>
+</ul>
+<h2 id="对我的启发"><a href="#对我的启发" class="headerlink" title="对我的启发"></a>对我的启发</h2><p>MTCNN采用级联架构整合多任务卷积网络实现高精度人脸检测。在我的项目中也需要实现多任务，如果想用一个网络做到end-to-end的模型，对现在的我来说还是比较困难的。但是如果把每个任务放在特定的网络中来实现，每个网络分开训练，这种设计可能稍微容易一点，MTCNN刚好给我提供了一个思路。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://towardsdatascience.com/face-detection-neural-network-structure-257b8f6f85d1" target="_blank" rel="noopener">What Does A Face Detection Neural Network Look Like?</a></li>
+<li><a href="https://blog.csdn.net/qq_36782182/article/details/83624357" target="_blank" rel="noopener">https://blog.csdn.net/qq_36782182/article/details/83624357</a></li>
+<li><a href="https://blog.csdn.net/qq_14845119/article/details/52680940" target="_blank" rel="noopener">https://blog.csdn.net/qq_14845119/article/details/52680940</a></li>
+<li><a href="https://github.com/kpzhang93/MTCNN_face_detection_alignment" target="_blank" rel="noopener">MTCNN</a></li>
+<li><a href="https://github.com/kuaikuaikim/DFace" target="_blank" rel="noopener">DFace</a></li>
+</ol>
 
     
 
@@ -260,7 +402,11 @@ my_car.read_odometer()
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Object Detection</a>
         		</li>
       		
 		</ul>
@@ -327,7 +473,7 @@ my_car.read_odometer()
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://suyueliu.top/2020/04/08/Python%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%EF%BC%9F/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://suyueliu.top/2020/07/15/MTCNN-Review/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -342,18 +488,9 @@ my_car.read_odometer()
 
 <nav id="article-nav">
   
-    <a href="/2020/04/11/Python%E4%B8%AD%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python中类的继承
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/04/07/%E9%9A%8F%E7%AC%941/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">随笔1</div>
+    <a href="/2020/06/21/SSD-Review/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SSD Review</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -372,6 +509,19 @@ my_car.read_odometer()
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MTCNN总结"><span class="toc-number">1.</span> <span class="toc-text">MTCNN总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-网络结构"><span class="toc-number">1.1.</span> <span class="toc-text">1. 网络结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-图像金字塔"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 图像金字塔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-P-Net"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 P-Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-R-Net"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 R-Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-O-Net"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 O-Net</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-训练过程"><span class="toc-number">1.2.</span> <span class="toc-text">2. 训练过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-损失函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-人脸分类"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 人脸分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-边界框回归"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2.1.2 边界框回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-面部关键点定位"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">2.1.3 面部关键点定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多源训练"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 多源训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-困难样本挖掘"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 困难样本挖掘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-训练数据"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 训练数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-其他"><span class="toc-number">1.3.</span> <span class="toc-text">3. 其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对我的启发"><span class="toc-number">1.4.</span> <span class="toc-text">对我的启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">1.5.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
