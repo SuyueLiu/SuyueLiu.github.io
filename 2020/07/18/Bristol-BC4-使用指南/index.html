@@ -6,16 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://suyueliu.top">
-  <title>Archives: 2020/6 | 等风来的企鹅</title>
+  <title>Bristol Blue Crystal Phase 4 使用指南 | 等风来的企鹅</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="等风来的企鹅">
-<meta property="og:url" content="http://suyueliu.top/archives/2020/06/index.html">
+  <meta name="description" content="由于毕设做深度学习项目，需要训练模型。布大的超算提供了我所需要的算力支持。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bristol Blue Crystal Phase 4 使用指南">
+<meta property="og:url" content="http://suyueliu.top/2020/07/18/Bristol-BC4-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="等风来的企鹅">
+<meta property="og:description" content="由于毕设做深度学习项目，需要训练模型。布大的超算提供了我所需要的算力支持。">
+<meta property="og:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/set_ssh.png">
+<meta property="article:published_time" content="2020-07-18T17:33:53.000Z">
+<meta property="article:modified_time" content="2020-07-18T17:35:40.176Z">
 <meta property="article:author" content="Suyue Liu">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/set_ssh.png">
   
     <link rel="alternative" href="/atom.xml" title="等风来的企鹅" type="application/atom+xml">
   
@@ -173,57 +180,174 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Bristol-BC4-使用指南" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/06/21/SSD-Review/" class="archive-article-date">
-        <time datetime="2020-06-21T21:02:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/06/21/SSD-Review/">SSD Review</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Bristol Blue Crystal Phase 4 使用指南
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+<a href="/2020/07/18/Bristol-BC4-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="archive-article-date">
+        <time datetime="2020-07-18T17:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">7分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <!--toc-->
+<p>由于毕设做深度学习项目，需要训练模型。布大的<a href="https://www.bristol.ac.uk/acrc/high-performance-computing/" target="_blank" rel="noopener">超算</a>提供了我所需要的算力支持。 <a id="more"></a></p>
+<h2 id="登陆（MacOS）"><a href="#登陆（MacOS）" class="headerlink" title="登陆（MacOS）"></a>登陆（MacOS）</h2><p>由于Mac自带ssh客户端服务，所以直接在终端通过ssh即可连接超算。如果用的不是校园网Eduroam，需要先<a href="https://www.bris.ac.uk/it-services/advice/homeusers/uobonly/uobvpn/" target="_blank" rel="noopener">配置VPN</a>才能连接上超算。username需要提前向学校申请。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -X username@bc4login.acrc.bris.ac.uk  	 # CPU login node</span><br><span class="line">ssh -X username@bc4gpulogin.acrc.bris.ac.uk  # GPU login node</span><br></pre></td></tr></table></figure></p>
+<p>我用iTerm2 + oh-my-zsh替代Mac原生的终端，通过在iTerm2中配置profiles文件可以一键登录，省去了每次输入密码的过程。</p>
+<ol>
+<li>首先创建一个脚本文件（无后缀），我是把文件放在～/.ssh/bc4-ac, 内容如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#&#x2F;user&#x2F;bin&#x2F;expect -f</span><br><span class="line"></span><br><span class="line">set user &lt;username&gt;</span><br><span class="line">set hose &lt;hosename&#x2F;IP&gt;</span><br><span class="line">set password &lt;password&gt;</span><br><span class="line">set port 22  # default 22</span><br><span class="line">set timeout -1  </span><br><span class="line"></span><br><span class="line">spawn ssh $user@$host</span><br><span class="line">expect &quot;*assword:*&quot;</span><br><span class="line">send &quot;$password\r&quot;</span><br><span class="line">interact</span><br><span class="line">expect eof</span><br></pre></td></tr></table></figure>
+<ol>
+<li>iTerm2 &gt;&gt; preference&gt;&gt;profiles</li>
+</ol>
+<p>添加一个新的profile，设置名称，把<code>command</code>模式改为<code>Command</code>，然后指定脚本文件。</p>
+<p><img src="https://suyueliu-blog-img.oss-cn-beijing.aliyuncs.com/images/set_ssh.png" style="zoom:40%;" /></p>
+<p>每次打开iTerm2之后，在profiles中选择相应的选项，便可快速登陆，同时还可以设置快捷键登陆。</p>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p>习惯了可视化，突然要在终端里面操控一切还是有点不适应的，好在BC4支持可视化操作。</p>
+<ul>
+<li>通过第一步登陆BC4结点；</li>
+<li>通过布大的学生账户登陆，启动dcv服务，<a href="https://bc4vis.acrc.bris.ac.uk/；" target="_blank" rel="noopener">https://bc4vis.acrc.bris.ac.uk/；</a></li>
+<li>点击左侧的”Linux Desktop”会自动下载一个”.vnc”文件；</li>
+<li>下载一个能够打开vnc文件的应用，打开文件即可；我用的是VNC Viwer（官方建议的NICE Endstation 不知道为什么连接不上）。</li>
+</ul>
+<h2 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h2><p>电脑连接上BC4之后，就相当于就相当于你的电脑通过ssh连接上远程Linux服务器。在个人电脑和服务器之间传输文件和咱们平时在两台电脑之间传输文件有所不同，这里有多种传输方法：ftp, rcp, scp, wget, curl, rsync等。我测试了一下BC4支持scp, wget, curl, rsync，这里我用的是scp方式，传输速度个人觉得还行。</p>
+<blockquote>
+<font size = 4>scp 命令在网络上的主机之间拷贝文件，它是安全拷贝（secure copy）的缩写。 scp 命令使用 ssh 来传输数据，并使用与 ssh 相同的认证模式，提供同样的安全保障。 scp 命令的用法和 rcp 命令非常类似，这里就不做过多介绍了。一般推荐使用 scp 命令，因为它比 rcp 更安全。</font>
+
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># general</span><br><span class="line">scp ~&#x2F;local_path&#x2F;local_filename username@hostname:&#x2F;remote_path&#x2F;  # 传输文件</span><br><span class="line">scp -r ~&#x2F;local_dir username@hostname:&#x2F;remote_path&#x2F;remote_dir  # 传输文件夹</span><br><span class="line"></span><br><span class="line"># 从本地上传文件到服务器</span><br><span class="line">scp .&#x2F;test.txt hn19387@bc4login.acrc.bris.ac.uk:&#x2F;mnt&#x2F;storage&#x2F;home&#x2F;hn19387&#x2F;examples</span><br><span class="line"># 从本地上传文件夹到服务器</span><br><span class="line">scp -r .&#x2F;test hn19387@bc4login.acrc.bris.ac.uk:&#x2F;mnt&#x2F;storage&#x2F;home&#x2F;hn19387&#x2F;examples</span><br></pre></td></tr></table></figure>
+<p>输入以上指令之后，只需要输入登录的密码（ssh登录的密码）验证即可开始传输。如果想从服务器上下载文件，只需要把remote和local调换顺序即可。</p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>BC4使用<a href="https://slurm.schedmd.com/" target="_blank" rel="noopener">Slurm</a>来管理集群和调度作业。</p>
+<blockquote>
+<p>Slurm is a job management application which allows you to take full advantage of BlueCrystal 4. You interact with it by writing a small shell script with some special commands which tell it how to run your code. You will pass this shell script to a command called <code>sbatch</code> which will ask Slurm to schedule your job. </p>
+</blockquote>
+<p>下面是几个Slurm框架下几个常用的术语：(<a href="https://www.acrc.bris.ac.uk/protected/bc4-docs/scheduler/index.html" target="_blank" rel="noopener">from BC4 user documentation</a>)</p>
+<ul>
+<li><strong>Node</strong>: A physical computer sitting in a rack in the computer room.</li>
+<li><strong>Task</strong>: Each <strong>task</strong> in Slurm refers to a process running on a node. </li>
+<li><strong>CPU</strong>: Most of the time, Slurm refers to a CPU core as a <strong>CPU</strong>. The computer nodes on BC4 have two physical CPU chips, with 14 processing cores inside each.</li>
+<li><strong>Partition</strong>: A set of nodes with associated restrictions on use. This is called a <strong>queue</strong> in some other systems. For example we have a <code>test</code> partition which only allows small, short jobs and we have a <code>cpu</code> partition which allows large, long jobs. Run <code>sinfo -s</code> to see a list of all the partitions you have access to.</li>
+<li><strong>Step</strong>: A job <strong>step</strong> is a part of a job. Each job will run its steps in order.</li>
+</ul>
+<p>下面Slurm中常用的指令：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sinfo</code></td>
+<td>报告由 Slurm 管理的分区和节点的状态。它具有多种筛选、排序和格式设置选项。</td>
+</tr>
+<tr>
+<td>sbatch</td>
+<td>用于提交作业脚本以后以后执行，<code>sbatch file_name.sh</code></td>
+</tr>
+<tr>
+<td><code>sacct</code></td>
+<td>用于查看正在活动或者已经结束的作业，<code>sacct -j &lt;job-ID&gt;</code> 可查看置顶的job。</td>
+</tr>
+<tr>
+<td><code>scancel</code></td>
+<td>用于取消挂起或正在运行的作业或作业步骤。</td>
+</tr>
+<tr>
+<td><code>scontrol</code></td>
+<td>用于查看或修改Slurm状态的管理工具，<code>control show job &lt;job-ID&gt;</code> 可查看作业细节。</td>
+</tr>
+<tr>
+<td><code>squeeze</code></td>
+<td>查看作业处理队列，<code>squeue --state=PENDING</code></td>
+</tr>
+<tr>
+<td><code>srun</code></td>
+<td>用于提交执行任务或实时启动作业步骤。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="作业运行模式"><a href="#作业运行模式" class="headerlink" title="作业运行模式"></a>作业运行模式</h3><p>在开始提交作业运行自己的程序之前，首先要准备好程序运行所需的环境。在BC4中已经预先设定了许多环境。</p>
+<ul>
+<li><code>module avail</code>：查询可用使用的模块，位于<code>/modules/local</code>的模块是官方推荐使用的；</li>
+<li><code>module whatis &lt;module_name&gt;</code>：查询指定的模块；</li>
+<li><code>module load &lt;module_name&gt;</code>：加载指定的模块。加载某个置顶的模块时也会把相依的依赖也一同加载进来；</li>
+<li><code>module unload &lt;module_name&gt;</code>：卸载指定模块；</li>
+<li><code>module list</code>：查看所有已经加载的模块；</li>
+<li><code>module merge</code>：一次卸载所有已经加载的模块。</li>
+</ul>
+<p>官方建议将加载模块的指令写在提交作业的<strong>脚本文件</strong>中。由于我要使用Python 和 GPU，我在我的脚本文件中加载了这两个模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">module load CUDA</span><br><span class="line">module load languages&#x2F;anaconda3&#x2F;2020.02-tflow-2.2.0</span><br></pre></td></tr></table></figure>
+<h4 id="交互模式"><a href="#交互模式" class="headerlink" title="交互模式"></a>交互模式</h4><p>在终端中通过<code>srun</code>直接提交资源分配请求，指定资源适量和限制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ srun -n 4 .&#x2F;example  # 申请4个进程生成一个作业step</span><br></pre></td></tr></table></figure>
+<h4 id="批处理模式"><a href="#批处理模式" class="headerlink" title="批处理模式"></a>批处理模式</h4><p>在BC4上提交批处理任务需要编写脚本，以明确申请的资源以及所要运行的程序。在终端通过<code>vim test.sh</code>指令创建名为<code>test.sh</code>的脚本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash  				 		 	# &#x2F;bin&#x2F;bash is used to execute the script</span><br><span class="line"></span><br><span class="line">#SBATCH --job-name&#x3D;test_job          	# Set name of job</span><br><span class="line">#SBATCH --partition&#x3D;test  	         	# Set partition</span><br><span class="line">#SBATCH --nodes&#x3D;2			 		 	# Set the number of nodes</span><br><span class="line">#SBATCH --ntasks-per-node&#x3D;2  		 	# Set the number of tasks(process) per node</span><br><span class="line">#SBATCH --cpus-per-task&#x3D;1    		 	# Set the number of cpus per task</span><br><span class="line">#SBATCH --time&#x3D;0:1:0         		 	# Set the max wallclock time</span><br><span class="line">#SBATCH --mem&#x3D;100M           		 	# Set the memory</span><br><span class="line">#SBATCH --output&#x3D;..&#x2F;results&#x2F;test.out 	# Set the directory for output</span><br><span class="line">#SBATCH --gres&#x3D;gpus:2					# Set the number of gpus, if use gpu, the partition 											  should be set as &quot;gpu&quot;</span><br><span class="line"></span><br><span class="line"># Load modules</span><br><span class="line">module load CUDA  # If use gpu</span><br><span class="line">module load languages&#x2F;anaconda3&#x2F;2020.02-tflow-2.2.0</span><br><span class="line"></span><br><span class="line"># run the application</span><br><span class="line">srun python .&#x2F;test.py</span><br></pre></td></tr></table></figure>
+<p>写完脚本之后，在终端通过指令<code>sbatch tets.sh</code>提交作业，等待运行，这时候会得到一个job-ID。可以通过<code>sacct -j &lt;job-ID&gt;</code>查询作业运行情况。作业运行的结果是存放在<code>test.out</code>（默认情况是在<code>slurm-&lt;job-ID&gt;</code>）中的，其内容不会直接打印到屏幕，需要通过Linux指令<code>cat</code>（<code>cat test.out</code>）将其输出。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Object Detection</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -236,75 +360,105 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://suyueliu.top/2020/07/18/Bristol-BC4-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/06/05/YOLO-V3%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2020-06-05T20:52:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/15/MTCNN-Review/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MTCNN Review</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/06/05/YOLO-V3%E6%80%BB%E7%BB%93/">YOLO_V3总结</a>
-	
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Object Detection</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+
+
+
 
 
           </div>
@@ -333,8 +487,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
